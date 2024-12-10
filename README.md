@@ -1,5 +1,7 @@
 # ドローネ三角分割(Delaunay Triangulation)
 
+アルゴリズムは以下に示したが、`scipy.spatial`の`Delaunay`を利用している。
+
 ### アルゴリズム
 1. とある点の集合すべてを含むような巨大な三角形を追加する
     1. 点集合をすべて囲うような矩形を追加
@@ -31,4 +33,47 @@
 > 参考
 > * https://qiita.com/edo_m18/items/7b3c70ed97bac52b2203  
 > * https://tercel-sakuragaoka.blogspot.com/2011/06/processingdelaunay_3958.html  
+
+
+
+## 重心座標系(Barycentric coordinate system)
+
+ある三角形に内包されている点について、標高を線形補間で求める。
+
+### 数式等
+任意の点を $P$ ，点 $P$ を内包する三角形の頂点をそれぞれ $A, B, C$ とする．またそれぞれの点の標高(重み)は $P_h, A_h, B_h, C_h$ とする．  
+重心座標系を用いると任意の点 $P$ の座標・標高は以下のように表せる．
+
+$$
+\begin{align*}
+P &= \lambda_1 A + \lambda_2 B + \lambda_2 C \\
+P_h &= \lambda_1 A_h + \lambda_2 B_h + \lambda_2 C_h \\
+\end{align*}
+$$
+
+&emsp;
+
+そして $\lambda_1, \lambda_2, \lambda_3$ は以下のように求められる．  
+面積を $area()$ として， 
+$$
+\lambda_1 = area(PBC) / area(ABC) \\
+\lambda_2 = area(APC) / area(ABC) \\
+\lambda_3 = area(ABP) / area(ABC) \\
+$$
+となる．また
+$$
+1 = \lambda_1 + \lambda_2 + \lambda_3
+$$
+である．
+
+ここで面積はベクトルの外積を用いて求めた．  
+例)
+$$
+area(ABC) = \frac{1}{2} AB \times AC
+$$
+
+> 参考  
+> * https://en.wikipedia.org/wiki/Barycentric_coordinate_system
+
+
 
