@@ -56,20 +56,26 @@ $$
 そして $\lambda_1, \lambda_2, \lambda_3$ は以下のように求められる．  
 面積を $area()$ として， 
 $$
+\begin{align*}
 \lambda_1 = area(PBC) / area(ABC) \\
 \lambda_2 = area(APC) / area(ABC) \\
 \lambda_3 = area(ABP) / area(ABC) \\
+\end{align*}
 $$
 となる．また
 $$
+\begin{align*}
 1 = \lambda_1 + \lambda_2 + \lambda_3
+\end{align*}
 $$
 である．
 
 ここで面積はベクトルの外積を用いて求めた．  
 例)
 $$
+\begin{align*}
 area(ABC) = \frac{1}{2} AB \times AC
+\end{align*}
 $$
 
 > 参考  
